@@ -1,6 +1,6 @@
 -- A table called user with attributes 
--- id integer, not null, auto incr and primary key
--- email string with 255 character, not null, and unique
+-- id integer, non null, auto increment and primary key
+-- email, string with 255 character, non null, and unique
 -- name string 255 character
 
 DROP TABLE IF EXISTS users;
