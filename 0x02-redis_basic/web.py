@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Implementing an expiring web cache
+Implement this use case with decorators
 """
 import redis
 import requests
@@ -9,11 +9,12 @@ from typing import Callable
 
 
 def track_get_page(fn: Callable) -> Callable:
-    """ Implementing an expiring web cache
+    """ Implement this use case with decorators
     """
     @wraps(fn)
     def wrapper(url: str) -> str:
-        """ Check whether url's data is cached
+        """ Wrapper that:
+            - check whether a url's data is cached
         """
         client = redis.Redis()
         client.incr(f'count:{url}')
@@ -28,7 +29,7 @@ def track_get_page(fn: Callable) -> Callable:
 
 @track_get_page
 def get_page(url: str) -> str:
-    """ Make a http request
+    """ Make a http request to a given endpoint
     """
     response = requests.get(url)
     return response.text
