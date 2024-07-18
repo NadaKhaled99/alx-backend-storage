@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Implementing an expiring web cache and tracker
+Implementing an expiring web cache
 """
 import redis
 import requests
@@ -9,11 +9,11 @@ from typing import Callable
 
 
 def track_get_page(fn: Callable) -> Callable:
-    """ Implementing an expiring web cache and tracker
+    """ Implementing an expiring web cache
     """
     @wraps(fn)
     def wrapper(url: str) -> str:
-        """ Wrapper
+        """ Check whether url's data is cached
         """
         client = redis.Redis()
         client.incr(f'count:{url}')
